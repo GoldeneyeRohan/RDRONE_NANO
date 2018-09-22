@@ -23,7 +23,10 @@
 class Controller {
   
   private: 
-  int throttle;
+  int throttleFL;
+  int throttleFR;
+  int throttleRL;
+  int throttleRR;
   unsigned long t0;
   unsigned long t1;
   Servo servoFL;
@@ -42,12 +45,27 @@ class Controller {
   servoRR.attach(6);
 }
   
-  int getThrottle() {
-    return throttle;
+  int getThrottleFL() {
+    return throttleFL;
+  }
+  
+  int getThrottleFR() {
+    return throttleFR;
+  }
+  
+  int getThrottleRL() {
+    return throttleRL;
+  }
+  
+  int getThrottleRR() {
+    return throttleRR;
   }
   
   void processMsg( const RDRONE::Throttle& throttle_msg) {
-    throttle = throttle_msg.FL;
+    throttleFL = throttle_msg.FL;
+    throttleFR = throttle_msg.FR;
+    throttleRL = throttle_msg.RL;
+    throttleRR = throttle_msg.RR;
   }
   
   void writeThrottle(const RDRONE::Throttle& throttle_msg) {
